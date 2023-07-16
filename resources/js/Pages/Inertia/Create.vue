@@ -24,7 +24,9 @@ content: null
 
 // 移行先のURLと送る情報を指定,formは上記でreactiveで指定している情報
 const submitFunction = () => {
+    // '/inertia'はweb.phpで指定したpostメソッドの際の移行先
 Inertia.post('/inertia', form)
+// Inertia.post((route('inertia.store')), form)
 }
 
 </script>
@@ -33,7 +35,7 @@ Inertia.post('/inertia', form)
 <template>
     <!-- バリデーションエラーを使用するためBreezeValidationErrorsファイルを子コンポーネントとして使用する -->
 <BreezeValidationErrors :errors="errors" />
-    <!-- formタグはそのまま使用するとページを全て際読み込みする仕様となっているシングルページアプリケーション
+    <!-- formタグはそのまま使用するとページを全て再読み込みする仕様となっている、シングルページアプリケーション
     ではなくなってしまうので、全部読み込むのを防ぐためにpreventというオプションを記述する必要がある
     @submit.preventはv-onの省略形で記述している　-->
 <form @submit.prevent="submitFunction">

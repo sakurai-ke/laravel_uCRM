@@ -11,6 +11,7 @@ class InertiaTestController extends Controller
     public function index()
     {
         return Inertia::render('Inertia/Index', [
+            // blogsは適当に指名した
             'blogs' => InertiaTest::all()
         ]);
     }
@@ -24,9 +25,11 @@ class InertiaTestController extends Controller
     {
         // dd($id);
         return Inertia::render('Inertia/Show', [
-            // 左側の'id'をsshowファイルのdefinePropsに渡している
+            // 左側の'id'をshowファイルのdefinePropsに渡している
             'id' => $id,
-            'blog' => InertiaTest::findOrFail($id)
+            // findOrFail($id)について、データベースの中の一件を取得する
+            // findOrFail()は、一致するidが見つからなかった場合は、エラーを返します。
+            'bloggg' => InertiaTest::findOrFail($id)
         ]);
     }
 
@@ -36,7 +39,7 @@ class InertiaTestController extends Controller
             'title' => ['required', 'max:20'],
             'content' => ['required'],
             ]);
-
+// $inertiaTest = new InertiaTest; の後ろでは「()」は不要？？？
         $inertiaTest = new InertiaTest;
         $inertiaTest->title = $request->title;
         $inertiaTest->content = $request->content;

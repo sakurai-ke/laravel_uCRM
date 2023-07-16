@@ -25,6 +25,7 @@ defineProps({ items: Array })
                                 <!-- フラッシュメッセージをコンポーネントで呼び出す -->
                                 <FlashMessage />
                                 <div class="flex pl-4 my-4 lg:w-2/3 w-full mx-auto">
+                                    <!--  ボタンとして使用する場合は「as="button"」と記述する-->
                                     <Link as="button" :href="route('items.create')" class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">商品登録</Link>
                                 </div>
 
@@ -41,6 +42,8 @@ defineProps({ items: Array })
                                     <tbody>
                                     <tr v-for="item in items" :key="item.id">
                                         <td class="border-b-2 border-gray-200 px-4 py-3">
+                                            <!-- { item:item.id })について 、左側の「item」はroute:listの「items/{item} .............. items.show › ItemController@show」
+                                            の{item}と合わせる。右側の「item.id」のitemは「v-for="item in items"」と記述を合わせる -->
                                             <Link class="text-blue-400" :href="route('items.show', { item:item.id })">{{ item.id }}</Link>
                                         </td>
                                         <td class="border-b-2 border-gray-200 px-4 py-3">{{item.name}}</td>

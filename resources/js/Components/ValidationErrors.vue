@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from 'vue';
 
-// 詳細不明だがおそらくinertiaの場合どこかの親コンポーネントから（Create.vue？？？）errorsプロパティがわたされている？
+// 詳細不明だがおそらくinertiaの場合どこかの親コンポーネントからerrorsプロパティがわたされている？
 const props = defineProps({ 
     errors: Object
 })

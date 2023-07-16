@@ -1,9 +1,11 @@
 <script setup>
 import { Inertia } from '@inertiajs/inertia'
 defineProps({
+    // Controller側のshowメソッドの配列で指定したキー（id)を渡す。
+    // 右側には型を指定すること
     id : String,
     // 1件だけ取得する際はArrayではなくObjectとすること（Arrayだとデベロッパーツールでエラーが発生する）
-    blog: Object
+    bloggg: Object
 })
 
 const deleteConfirm = id => {
@@ -16,6 +18,7 @@ onBefore: () => confirm('本当に削除しますか?')
 
 </script>
 <template>
-{{ id }}<br> {{ blog.title }}<br>
-<button @click="deleteConfirm(blog.id)">削除</button>
+{{ id }}<br> 
+{{ bloggg.title }}<br>
+<button @click="deleteConfirm(bloggg.id)">削除</button>
 </template>

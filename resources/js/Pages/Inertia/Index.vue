@@ -1,14 +1,14 @@
 <script setup>
 // import { Link } from '@inertiajs/inertia-vue3'; は、Inertia.jsのVue.js用のパッケージから Link コンポーネントをインポートして、動的なリンクを作成するために使用
 import { Link } from '@inertiajs/inertia-vue3';
-// blogsは配列を拡張したコレクション型なの、Arraytという形で取得する
+// blogsは配列を拡張したコレクション型なので、Arraytという形で取得する
 defineProps({ blogs: Array})
 </script>
 
 <!-- 、$page.props.flash.message は、サーバーからクライアントに渡されたデータの中の flash.message プロパティを参照しているという意味
     （$page は Inertia.js のコンポーネント内で使用される特殊な変数） -->
 <template>
-    <div v-if="$page.props.flash.message">
+    <div v-if="$page.props.flash.message" class="bg-blue-300">
     {{ $page.props.flash.message }}
     </div>
 

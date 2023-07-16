@@ -30,6 +30,8 @@ const form = reactive({
 // 移行先のURLと送る情報を指定,formは上記でreactiveで指定している情報。メソッド名は動詞名詞とした方がよい、らしい
 const updateItem = id => {
 Inertia.put(route('items.update', { item: id}), form)
+// URIを指定する記述方法だと下記の通り
+// Inertia.put('/items/' + id, form);
 }
 </script>
 
@@ -48,6 +50,7 @@ Inertia.put(route('items.update', { item: id}), form)
                     <!-- バリデーションエラーを使用するためBreezeValidationErrorsファイルを子コンポーネントとして使用する -->
                     <BreezeValidationErrors :errors="errors" />
                         <section class="text-gray-600 body-font relative">
+                            <!-- 上記で記述されているformのidを指定する -->
                             <form @submit.prevent="updateItem(form.id)">
                                     <div class="container px-5 py-8 mx-auto">
                                 

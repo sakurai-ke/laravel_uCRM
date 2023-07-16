@@ -20,6 +20,8 @@ class ItemController extends Controller
         // dd(Item::select('id', 'name', 'price', 'is_selling')->get());
 
         return Inertia::render('Items/Index', [
+            // Item::all()でもいいが、不要なデータまで取得してしまうのでselectで取得した方が良い、らしい
+            // また、selectで取得する場合は最後に->get()が必要
             'items' => Item::select('id', 'name', 'price', 'is_selling')
             ->get()
         ]);
@@ -101,6 +103,8 @@ class ItemController extends Controller
      */
     public function update(UpdateItemRequest $request, Item $item)
     {
+
+        // $item->***は設定済みの情報、$request->***は編集した情報
         // dd($item->name, $request->name);
         $item->name = $request->name;
         $item->memo = $request->memo;

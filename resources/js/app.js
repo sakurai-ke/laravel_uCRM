@@ -1,4 +1,6 @@
 import './bootstrap';
+import './micromodal'
+import '../css/micromodal.css'
 import '../css/app.css';
 
 import { createApp, h } from 'vue';

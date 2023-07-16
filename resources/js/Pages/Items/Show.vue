@@ -9,6 +9,8 @@ import { Inertia } from '@inertiajs/inertia'
 // これにより、子コンポーネント内で errors プロパティにアクセスすることができ、フォームの入力エラーメッセージを保持するオブジェクトとして利用することができます。
 // 例えば、<div v-if="errors.title">{{ errors.title }}</div> の部分では、errors.title の値が存在する場合にエラーメッセージを表示するため、errors プロパティに渡されたエラーオブジェクトの title プロパティが参照されています。
 
+// Controller側のshowメソッドの配列で指定したキー（item)を渡す。
+// 右側には型を指定すること（一件だけ受け渡されているので型はObjectとする）
 defineProps({
 item: Object
 })
@@ -47,6 +49,7 @@ const deleteItem = id => {
                                                 </div>
                                             </div>
                                             
+                                            <!-- {{ nl2br(item.memo) だとbrタグがそのまま表示されるので、divタグの中にv-html="nl2br(item.memo)"を記述する}} -->
                                             <div class="p-2 w-full">
                                             <div class="relative">
                                                 <label for="memo" class="leading-7 text-sm text-gray-600">メモ</label>

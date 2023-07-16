@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use app\Models\Purchase;
+use App\Models\Purchase;
 
 class Item extends Model
 {
@@ -14,14 +14,15 @@ class Item extends Model
         'name',
         'memo',
         'price',
-        'is_selling'
+        'is_selling',
     ];
 
     public function purchases()
-        {
+    {
         return $this->belongsToMany(Purchase::class)
         ->withPivot('quantity');
-        }
+    }
+
 }
 
 // 中間テーブルの情報も取得する場合は ->withPivot('quantity');の記述も必要
