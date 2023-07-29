@@ -6,7 +6,12 @@ const search = ref('')
 const customers = reactive({})
 
 onMounted(() => {
+  // ajax(非同期)通信でaxiosのライプラリを使用。
+  // axiosを使用して非同期でAPIからデータを取得、'/api/user' にGETリクエストを送信します
+  // 第一引数でアクセスするURLを記述する
   axios.get('/api/user')
+  // 返事がpromise形式（javascriptの話）
+  // 返ってきた値がresに入る
   .then( res => {
     console.log(res.data)
   })
@@ -45,6 +50,7 @@ const setCustomer = e => {
           <h2 class="modal__title" id="modal-1-title">
             顧客検索
           </h2>
+          <!-- @click="toggleStatus"よりisShowのbooleanがトグルする -->
           <button @click="toggleStatus" type="button" class="modal__close" aria-label="Close modal" data-micromodal-close></button>
         </header>
         <main class="modal__content" id="modal-1-content">
@@ -60,6 +66,7 @@ const setCustomer = e => {
               </tr>
             </thead>
             <tbody>
+              <!-- 顧客情報を一つづつ表示させる -->
               <tr v-for="customer in customers.value.data" :key="customer.id">
                 <td class="border-b-2 border-gray-200 px-4 py-3">
                   <button @click="setCustomer({ id: customer.id, kana: customer.kana })" type="button" class="text-blue-400">
@@ -75,6 +82,7 @@ const setCustomer = e => {
         </div>
         </main>
         <footer class="modal__footer">
+          <!-- @click="toggleStatus"よりisShowのbooleanがトグルする -->
           <button @click="toggleStatus" type="button" class="modal__btn" data-micromodal-close aria-label="Close this dialog window">閉じる</button>
         </footer>
       </div>

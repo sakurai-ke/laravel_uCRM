@@ -28,4 +28,4 @@ class Purchase extends Model
         }
 }
 
-// 中間テーブルの情報も取得する場合は ->withPivot('quantity');の記述も必要
+// 中間テーブルにしかない情報も取得する場合は ->withPivot('quantity');の記述も必要

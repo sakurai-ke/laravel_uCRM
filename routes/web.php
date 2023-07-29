@@ -19,13 +19,16 @@ use App\Http\Controllers\PurchaseController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// 商品管理
 // ->middleware(['auth', 'verified'])について、認証されていないと表示されなくなるようにしている
 Route::resource('items', ItemController::class)
 ->middleware(['auth', 'verified']);
 
+// 顧客管理
 Route::resource('customers', CustomerController::class)
 ->middleware(['auth', 'verified']);
 
+// 購入画面
 Route::resource('purchases', PurchaseController::class)
 ->middleware(['auth', 'verified']);
 

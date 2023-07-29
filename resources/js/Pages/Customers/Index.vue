@@ -53,7 +53,7 @@ Inertia.get(route('customers.index', { search: search.value }))
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr v-for="customer in customers.data" :key="customer.id">
+                                    <tr v-for="customer in customers.data"  :key="customer.id">
                                         <td class="border-b-2 border-gray-200 px-4 py-3">
                                             {{ customer.id }}
                                         </td>
