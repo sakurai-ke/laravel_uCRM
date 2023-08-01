@@ -58,6 +58,8 @@ onMounted(() => {
                                 <tbody>
                                   <tr v-for="order in props.orders.data" :key="order.id">
                                     <td class="border-b-2 border-gray-200 px-4 py-3">
+                                      <!-- { purchase: order.id })について 、左側の「purchase」はroute:listの「purchases/{purchase} ..... purchases.show › PurchaseController@show」
+                                      の{purchase}と合わせる。「order.id」のorderは「v-for="order in props.orders.data"」と記述を合わせる -->
                                       <Link class="text-blue-400" :href="route('purchases.show', { purchase: order.id })">
                                       {{ order.id }}
                                       </Link>

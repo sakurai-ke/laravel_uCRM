@@ -4,10 +4,14 @@ import { Head, Link } from '@inertiajs/vue3';
 import { nl2br } from '@/common';
 import { Inertia } from '@inertiajs/inertia'
 
-// 上記のコードでは、defineProps関数を使用して、errorsという名前のプロパティを定義しています。これは、コンポーネントの親コンポーネントから渡されるエラーオブジェクトを受け取るためのプロパティです。
-// 具体的には、親コンポーネントで <ComponentName :errors="errorsData" /> のようにコンポーネントを使用する場合、errorsDataというエラーオブジェクトが親コンポーネントからプロパティとして渡されます。そして、子コンポーネントの defineProps の引数に { errors: Object } と指定することで、errors プロパティを受け取ることができます。
-// これにより、子コンポーネント内で errors プロパティにアクセスすることができ、フォームの入力エラーメッセージを保持するオブジェクトとして利用することができます。
-// 例えば、<div v-if="errors.title">{{ errors.title }}</div> の部分では、errors.title の値が存在する場合にエラーメッセージを表示するため、errors プロパティに渡されたエラーオブジェクトの title プロパティが参照されています。
+// 上記のコードでは、defineProps関数を使用して、errorsという名前のプロパティを定義しています。これは、コンポーネントの
+// 親コンポーネントから渡されるエラーオブジェクトを受け取るためのプロパティです。具体的には、親コンポーネントで 
+// <ComponentName :errors="errorsData" /> のようにコンポーネントを使用する場合、errorsDataというエラーオブジェクト
+// が親コンポーネントからプロパティとして渡されます。そして、子コンポーネントの defineProps の引数に { errors: Object }
+//  と指定することで、errors プロパティを受け取ることができます。
+// これにより、子コンポーネント内で errors プロパティにアクセスすることができ、フォームの入力エラーメッセージを保持するオブジェクト
+// として利用することができます。例えば、<div v-if="errors.title">{{ errors.title }}</div> の部分では、errors.title 
+// の値が存在する場合にエラーメッセージを表示するため、errors プロパティに渡されたエラーオブジェクトの title プロパティが参照されています。
 
 // Controller側のshowメソッドの配列で指定したキー（item)を渡す。
 // 右側には型を指定すること（一件だけ受け渡されているので型はObjectとする）
@@ -69,7 +73,7 @@ const deleteItem = id => {
 
                                             <div class="p-2 w-full">
                                             <div class="relative">
-                                                <label for="status" class="leading-7 text-sm text-gray-600">商品価格</label>
+                                                <label for="status" class="leading-7 text-sm text-gray-600">ステータス</label>
                                                 <div id="status" class="w-full bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                                     <span v-if="item.is_selling === 1 ">販売中</span>
                                                     <span v-if="item.is_selling === 0 ">停止中</span>

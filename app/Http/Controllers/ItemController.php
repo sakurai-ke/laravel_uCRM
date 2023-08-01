@@ -104,7 +104,8 @@ class ItemController extends Controller
     public function update(UpdateItemRequest $request, Item $item)
     {
 
-        // $item->***は設定済みの情報、$request->***は編集した情報
+        // $item->***は設定済みの情報、$request->***はフォームに入力した情報
+        // $item->***を$request->***に入れ替える
         // dd($item->name, $request->name);
         $item->name = $request->name;
         $item->memo = $request->memo;

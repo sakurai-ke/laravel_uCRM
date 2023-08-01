@@ -27,13 +27,19 @@ class Order extends Model
 
         if(is_null($startDate) && !is_null($endDate))
         {
+            // 終了日に1日を追加した日付を$endDate1に代入します。これは、指定した終了日を含めるための処理です。
             $endDate1 = Carbon::parse($endDate)->addDays(1);
+            // クエリにwhereメソッドを使用して、created_atカラムが$endDate1以下のレコードをフィルタリングします。
+            // つまり、終了日までのレコードが対象になります。
             return $query->where('created_at', '<=', $endDate1);
         }
 
         if(!is_null($startDate) && !is_null($endDate))
         {
+            // 終了日に1日を追加した日付を$endDate1に代入します。これは、指定した終了日を含めるための処理です。
             $endDate1 = Carbon::parse($endDate)->addDays(1);
+            // クエリにwhereメソッドを使用して、created_atカラムが$startDate以上かつ$endDate1以下のレコードを
+            // フィルタリングします。つまり、指定した開始日から終了日までのレコードが対象になります。
             return $query->where('created_at', ">=", $startDate)
             ->where('created_at', '<=', $endDate1);
         }

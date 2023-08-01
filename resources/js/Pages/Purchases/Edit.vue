@@ -12,8 +12,13 @@ const props = defineProps({
   errors: Object
 })
 
+// onMountedでページ読み込み後 即座に実行。
 onMounted(() => {
+  // PurchaseControllerから受け取ったitemsデータをひとつづつ処理
   props.items.forEach( item => {
+// 下記で新たに定義したitemListの中に商品情報(id、名前、金額、数量、小計）を入れる
+// itemListはrefで宣言されているため通常は.valueを付加する
+// 配列に1つずつ追加
     itemList.value.push({
       id: item.id,
       name: item.name,
@@ -25,13 +30,13 @@ onMounted(() => {
 
 const itemList = ref([])
 
-
+// orderが配列になっていて配列の0番目にcustomer_nameとかidとかtotalとかの情報が入っている、らしい？
 const form = reactive({
   id: props.order[0].id,
   date: dayjs(props.order[0].created_at).format("YYYY-MM-DD"),
   customer_id: props.order[0].customer_id,
   status: props.order[0].status,
-  items: []
+  itemsss: []
 })
 
 const totalPrice = computed(() => {
@@ -45,7 +50,7 @@ const totalPrice = computed(() => {
 const updatePurchase = id => {
   itemList.value.forEach( item => {
     if( item.quantity > 0){
-      form.items.push({
+      form.itemsss.push({
         id: item.id,
         quantity: item.quantity
       })

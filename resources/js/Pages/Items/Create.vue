@@ -11,7 +11,8 @@ import BreezeValidationErrors from '@/Components/ValidationErrors.vue'
 // これにより、子コンポーネント内で errors プロパティにアクセスすることができ、フォームの入力エラーメッセージを保持するオブジェクトとして利用することができます。
 // 例えば、<div v-if="errors.title">{{ errors.title }}</div> の部分では、errors.title の値が存在する場合にエラーメッセージを表示するため、errors プロパティに渡されたエラーオブジェクトの title プロパティが参照されています。
 
-// 詳細不明だがおそらくinertiaの場合どこかの親コンポーネントからerrorsプロパティがわたされているらしい
+// バリデーションエラーのための記述
+// 詳細不明だがControllerにてvalidateの設定をするとerrorが受け渡されるようになっている、らしい
 defineProps({
 errors: Object
 })
@@ -28,7 +29,7 @@ const form = reactive({
     price:null
 })
 
-// 移行先のURLと送る情報を指定,formは上記でreactiveで指定している情報。メソッド名は動詞名詞とした方がよい、らしい
+// 移行先のURLと送る情報を指定,formは上記でreactiveで指定している情報。メソッド名（ここではstoreItem）は動詞名詞とした方がよい、らしい
 const storeItem = () => {
 Inertia.post('/items', form)
 }
@@ -46,9 +47,12 @@ Inertia.post('/items', form)
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">
-                    <!-- バリデーションエラーを使用するためBreezeValidationErrorsファイルを子コンポーネントとして使用する -->
+                    <!-- 親コンポーネントであるCreate.vueから子コンポーネントであるBreezeValidationErrors.vueにエラーオブジェクトをpropsとして渡しています。
+                    このエラーオブジェクトにはバリデーションエラーの情報が含まれており、フォームの入力内容に対するバリデーションが失敗した場合にエラーメッセージを表示するために使われます。 -->
                     <BreezeValidationErrors :errors="errors" />
                         <section class="text-gray-600 body-font relative">
+                            <!-- Vue.jsでは、@submit ディレクティブを使用してこの submit イベントを監視し、対応するメソッドを実行する
+                                Vue.jsの @submit.prevent ディレクティブを使用することで、フォームのデフォルトの送信動作をキャンセルしてページの再読み込みを防ぐ -->
                             <form @submit.prevent="storeItem">
                                     <div class="container px-5 py-8 mx-auto">
                                 

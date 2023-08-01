@@ -21,7 +21,7 @@ onMounted(() => {
 form.date = getToday()
 // PurchaseControllerから受け取ったitemsデータをひとつづつ処理
 props.items.forEach( item => { // 配列を1つずつ処理
-// 下記で新たに定義したitemListの中に商品情報(id、名前、金額、数雨量、小計）を入れる
+// 下記で新たに定義したitemListの中に商品情報(id、名前、金額、数量、小計）を入れる
 // itemListはrefで宣言されているため通常は.valueを付加する
 // 配列に1つずつ追加
 itemList.value.push({ 

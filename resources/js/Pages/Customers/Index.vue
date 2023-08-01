@@ -8,10 +8,16 @@ import { Inertia } from '@inertiajs/inertia';
 
 // CustomerController.phpについて->get()を->paginate(50)に変更した場合customers情報（顧客情報）を受け取るには
 // 形式をObjectで受け取るようにすること（->get()で受け取る際はarrayで受け取る）
+// 検索ボタンクリック→searchCustomersメソッドが動作→フォームで検索された結果の内容をCustomerControllerから受け取っている？？？
 defineProps({ customers: Object })
 
+// Vue 3のComposition APIで使われるref関数を使って、searchという変数を宣言しています。ref関数はリアクティブな変数を作成し、
+// 変数の値が変更されるとVueがそれを検知して自動的に再レンダリングします。
 const search = ref('')
 // ref の値を取得するには .valueが必要
+// 検索ボタンがクリックされた時に実行される関数です。Inertia.get()はInertia.jsを使ってAPIリクエストを送信します。
+// route('customers.index', { search: search.value })は、customers.indexという名前のルートに対して、searchという
+// クエリパラメータとしてsearch.value（検索文字列）を付加しています。
 const searchCustomers = () => {
 Inertia.get(route('customers.index', { search: search.value }))
 }
@@ -36,6 +42,7 @@ Inertia.get(route('customers.index', { search: search.value }))
                                 <FlashMessage />
                                 <div class="flex pl-4 my-4 lg:w-2/3 w-full mx-auto">
                                     <div>
+                                        <!-- v-model="search"を使ってsearch変数とバインディングしています。ボタンをクリックするとsearchCustomers関数が実行されます。 -->
                                         <input type="text" name="search" v-model="search">
                                         <button class="bg-blue-300 text-white py-2 px-2" @click="searchCustomers">検索</button>
                                     </div>
@@ -53,6 +60,8 @@ Inertia.get(route('customers.index', { search: search.value }))
                                     </tr>
                                     </thead>
                                     <tbody>
+                                        <!-- オブジェクト形式で渡ってきたcustomersデータのdataの中にidとかnameとかkanaの情報があり、
+                                        それら一つ一つ処理する -->
                                     <tr v-for="customer in customers.data"  :key="customer.id">
                                         <td class="border-b-2 border-gray-200 px-4 py-3">
                                             {{ customer.id }}

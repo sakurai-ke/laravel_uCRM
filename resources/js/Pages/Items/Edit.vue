@@ -6,10 +6,13 @@ import { Inertia } from '@inertiajs/inertia'
 // バリデーションエラーを使用するためBreezeValidationErrorsファイルを子コンポーネントとして使用するため読み込む
 import BreezeValidationErrors from '@/Components/ValidationErrors.vue'
 
-// 上記のコードでは、defineProps関数を使用して、errorsという名前のプロパティを定義しています。これは、コンポーネントの親コンポーネントから渡されるエラーオブジェクトを受け取るためのプロパティです。
-// 具体的には、親コンポーネントで <ComponentName :errors="errorsData" /> のようにコンポーネントを使用する場合、errorsDataというエラーオブジェクトが親コンポーネントからプロパティとして渡されます。そして、子コンポーネントの defineProps の引数に { errors: Object } と指定することで、errors プロパティを受け取ることができます。
+// 上記のコードでは、defineProps関数を使用して、errorsという名前のプロパティを定義しています。これは、コンポーネントの親コンポーネントから渡される
+// エラーオブジェクトを受け取るためのプロパティです。具体的には、親コンポーネントで <ComponentName :errors="errorsData" /> のように
+// コンポーネントを使用する場合、errorsDataというエラーオブジェクトが親コンポーネントからプロパティとして渡されます。そして、子コンポーネントの
+//  defineProps の引数に { errors: Object } と指定することで、errors プロパティを受け取ることができます。
 // これにより、子コンポーネント内で errors プロパティにアクセスすることができ、フォームの入力エラーメッセージを保持するオブジェクトとして利用することができます。
-// 例えば、<div v-if="errors.title">{{ errors.title }}</div> の部分では、errors.title の値が存在する場合にエラーメッセージを表示するため、errors プロパティに渡されたエラーオブジェクトの title プロパティが参照されています。
+// 例えば、<div v-if="errors.title">{{ errors.title }}</div> の部分では、errors.title の値が存在する場合にエラーメッセージを表示するため、
+// errors プロパティに渡されたエラーオブジェクトの title プロパティが参照されています。
 
 // 詳細不明だがおそらくinertiaの場合どこかの親コンポーネントからerrorsプロパティがわたされているらしい
 const props = defineProps({
@@ -27,7 +30,8 @@ const form = reactive({
     is_selling: props.item.is_selling
 })
 
-// 移行先のURLと送る情報を指定,formは上記でreactiveで指定している情報。メソッド名は動詞名詞とした方がよい、らしい
+// 移行先のURLと送る情報を指定。第二引数のformは上記でreactiveで指定している情報。（この情報をコントローラー経由で渡す）
+//　メソッド名は動詞名詞とした方がよい、らしい
 const updateItem = id => {
 Inertia.put(route('items.update', { item: id}), form)
 // URIを指定する記述方法だと下記の通り
@@ -50,7 +54,8 @@ Inertia.put(route('items.update', { item: id}), form)
                     <!-- バリデーションエラーを使用するためBreezeValidationErrorsファイルを子コンポーネントとして使用する -->
                     <BreezeValidationErrors :errors="errors" />
                         <section class="text-gray-600 body-font relative">
-                            <!-- 上記で記述されているformのidを指定する -->
+                            <!-- 上記で記述されているformのidを指定したうえで、そのidがipdateItemメソッドの引数となる。
+                            （ここのidというのは上記のformの箇所で記述してあるidのこと。 -->
                             <form @submit.prevent="updateItem(form.id)">
                                     <div class="container px-5 py-8 mx-auto">
                                 
